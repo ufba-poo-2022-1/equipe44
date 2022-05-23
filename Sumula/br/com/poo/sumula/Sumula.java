@@ -12,7 +12,7 @@ public class Sumula implements ActionListener{
 	 JFrame frame = new JFrame();
 	 JButton startButton = new JButton("START");
 	 JButton resetButton = new JButton("RESET");
-	 JLabel timeLabel = new JLabel();
+	 Cronometro cronometro = new Cronometro();
 	 JTextField time1 = new JTextField();
 	 JTextField time1Jogador1 = new JTextField();
 	 JTextField time1Jogador2 = new JTextField();
@@ -25,42 +25,20 @@ public class Sumula implements ActionListener{
 	 JTextField time2Jogador3 = new JTextField();
 	 JTextField time2Jogador4 = new JTextField();
 	 JTextField time2Jogador5 = new JTextField();
-	 int elapsedTime = 0;
-	 int seconds =0;
-	 int minutes =0;
-	 int hours =0;
-	 boolean started = false;
-	 String seconds_string = String.format("%02d", seconds);
-	 String minutes_string = String.format("%02d", minutes);
-	 String hours_string = String.format("%02d", hours);
 	 
-	 Timer timer = new Timer(1000, new ActionListener() {
-	  
-	  public void actionPerformed(ActionEvent e) {
-	   
-	   elapsedTime=elapsedTime+1000;
-	   hours = (elapsedTime/3600000);
-	   minutes = (elapsedTime/60000) % 60;
-	   seconds = (elapsedTime/1000) % 60;
-	   seconds_string = String.format("%02d", seconds);
-	   minutes_string = String.format("%02d", minutes);
-	   hours_string = String.format("%02d", hours);
-	   timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
-	   
-	  }
-	  
-	 });
+	 
+	
 	 
 	 
 	 Sumula(){
 	  
-	  timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
-	  timeLabel.setBounds(850,100,200,100);
-	  timeLabel.setHorizontalAlignment(JTextField.CENTER);
-	  timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
-	  timeLabel.setBorder(BorderFactory.createBevelBorder(1));
-	  timeLabel.setOpaque(true);
-
+	  cronometro.timeLabel.setText(cronometro.hours_string+":"+cronometro.minutes_string+":"+cronometro.seconds_string);
+	  cronometro.timeLabel.setBounds(850,100,200,100);
+	  cronometro.timeLabel.setHorizontalAlignment(JTextField.CENTER);
+	  cronometro.timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
+	  cronometro.timeLabel.setBorder(BorderFactory.createBevelBorder(1));
+	  cronometro.timeLabel.setOpaque(true);
+	
 	  time1.setText("Time 1");
 	  time1.setBounds(100,100,200,100);
 	  time1.setHorizontalAlignment(JTextField.CENTER);
@@ -134,7 +112,7 @@ public class Sumula implements ActionListener{
 	  
 	  frame.add(startButton);
 	  frame.add(resetButton);
-	  frame.add(timeLabel);
+	  frame.add(cronometro.timeLabel);
 	  frame.add(time1);
 	  frame.add(time1Jogador1);
 	  frame.add(time1Jogador2);
@@ -153,49 +131,28 @@ public class Sumula implements ActionListener{
 	  frame.setLayout(null);
 	  frame.setVisible(true);
 	 }
-	 
 	 @Override
 	 public void actionPerformed(ActionEvent e) {
 	  
 	  if(e.getSource()==startButton) {
 	   
-	   if(started==false) {
-	    started=true;
+	   if(cronometro.started==false) {
+	    cronometro.started=true;
 	    startButton.setText("STOP");
-	    start();
+	    cronometro.start();
 	   }
 	   else {
-	    started=false;
+	    cronometro.started=false;
 	    startButton.setText("START");
-	    stop();
+	    cronometro.stop();
 	   }
 	   
 	  }
 	  if(e.getSource()==resetButton) {
-	   started=false;
+	   cronometro.started=false;
 	   startButton.setText("START");
-	   reset();
+	   cronometro.reset();
 	  }
-	  
+  
 	 }
-	 
-	 void start() {
-	  timer.start();
-	 }
-	 
-	 void stop() {
-	  timer.stop();
-	 }
-	 
-	 void reset() {
-	  timer.stop();
-	  elapsedTime=0;
-	  seconds =0;
-	  minutes=0;
-	  hours=0;
-	  seconds_string = String.format("%02d", seconds);
-	  minutes_string = String.format("%02d", minutes);
-	  hours_string = String.format("%02d", hours);       timeLabel.setText(hours_string+":"+minutes_string+":"+seconds_string);
-	 }
-
 }
