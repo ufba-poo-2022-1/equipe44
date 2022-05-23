@@ -15,8 +15,8 @@ public class Cronometro {
 	 int hours =0;
 	 boolean started = false;
 	 JLabel timeLabel = new JLabel();
-	 String seconds_string = String.format("%02d", seconds);
-	 String minutes_string = String.format("%02d", minutes);
+	 String secondString = String.format("%02d", seconds);
+	 String minuteString = String.format("%02d", minutes);
 	 DecimalFormat dFormat = new DecimalFormat("00");
 	 
 	 Timer timer = new Timer(1000, new ActionListener() {		  
@@ -25,16 +25,16 @@ public class Cronometro {
 		public void actionPerformed(ActionEvent e) {
 		
 			seconds--;
-			seconds_string = dFormat.format(seconds);
-			minutes_string = dFormat.format(minutes);	
-			timeLabel.setText(minutes_string + ":" + seconds_string);
+			secondString = dFormat.format(seconds);
+			minuteString = dFormat.format(minutes);	
+			timeLabel.setText(minuteString + ":" + secondString);
 			
 			if(seconds==-1) {
 				seconds = 59;
 				minutes--;
-				seconds_string = dFormat.format(seconds);
-				minutes_string = dFormat.format(minutes);	
-				timeLabel.setText(minutes_string + ":" + seconds_string);
+				secondString = dFormat.format(seconds);
+				minuteString = dFormat.format(minutes);	
+				timeLabel.setText(minuteString + ":" + secondString);
 			}
 			if(minutes==0 && seconds==0) {
 				timer.stop();
@@ -56,9 +56,9 @@ public class Cronometro {
 	  seconds =0;
 	  minutes=12;
 	  hours=0;
-	  seconds_string = String.format("%02d", seconds);
-	  minutes_string = String.format("%02d", minutes);
-	  timeLabel.setText(minutes_string+":"+seconds_string);
+	  secondString = String.format("%02d", seconds);
+	  minuteString = String.format("%02d", minutes);
+	  timeLabel.setText(minuteString+":"+secondString);
 	 }
 	 
 	 
