@@ -32,7 +32,7 @@ public class Sumula implements ActionListener{
 	 
 	 Sumula(){
 	  
-	  cronometro.timeLabel.setText(cronometro.hours_string+":"+cronometro.minutes_string+":"+cronometro.seconds_string);
+	  cronometro.timeLabel.setText(cronometro.minutes_string+":"+cronometro.seconds_string);
 	  cronometro.timeLabel.setBounds(850,100,200,100);
 	  cronometro.timeLabel.setHorizontalAlignment(JTextField.CENTER);
 	  cronometro.timeLabel.setFont(new Font("Verdana",Font.PLAIN,35));
