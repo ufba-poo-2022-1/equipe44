@@ -10,70 +10,40 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Jogador implements ActionListener  {
+public class Jogador{
+	
+	String nome;
+	Integer pontos;
+	String numero;
+	Integer faltas;
 
-	private String numero;
-	private Integer pontos;
-	private Integer faltas;
-	private String nome;
-	private boolean expulso;
-	JLabel labelNome = new JLabel();
-	private JFrame criaJogador = new JFrame("Jogador");
-	JButton confirma  = new JButton("Confirma");
-	Formatador formatador = new Formatador();
-	JFormattedTextField numText = new JFormattedTextField(formatador);
-	JTextField nomeText = new JTextField(); 
-	
-	Jogador(String numero, String nome ){
-		this.numero = numero;
+	Jogador(String nome , String numero , Integer faltas, Integer pontos){
 		this.nome = nome;
-		this.numText.addActionListener(this);
-		this.confirma.addActionListener(this);
+		this.numero = numero;
+		this.faltas = faltas;
+		this.pontos = pontos;
+		
 	}
 	
-	public String getNome() {
-		return nome;
-	}
+	@Override
+    public String toString() {
+		String nm = getNumero();
+        return  nm;
+    }
 	
 	public String getNumero() {
 		return numero;
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource()== this.numText) {
-			Container container = criaJogador.getContentPane();
-			container.setLayout(null);
-			
-			JLabel logo = new JLabel("Informe Sobre o Jogador : ");
-			logo.setBounds(60,5,250,30);
-			
-			JLabel nomeLabel = new JLabel("Nome :");
-			nomeLabel.setBounds(20,60,250,30);
-			
-			nomeText.setBounds(75, 60, 250, 30);
-
-			confirma.setBounds(150,100,100,30);
-			
-			container.add(logo);
-			container.add(nomeLabel); 
-			container.add(numText);
-			container.add(nomeText); 
-			container.add(confirma);
-			criaJogador.setVisible(true);
-			
-			criaJogador.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			criaJogador.setBounds(200, 100, 400, 200);
-		}
-		if (e.getSource()== confirma) {
-			String nome = nomeText.getText();
-			String numero = numText.getText();
-			
-			labelNome.setText(nome);
-			
-		}
-		
+	
+	public void setFaltas(Integer faltas) {
+		this.faltas = faltas;
+	}
+	
+	public Integer getFaltas() {
+		return faltas;
+	}
+	
+	public void setPontos(Integer pontos) {
+		this.pontos = pontos;
 	}
 }
-
-
